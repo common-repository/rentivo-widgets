@@ -1,0 +1,23 @@
+{% extends 'injectables/front/footer-code.html.twig' %}
+
+{% block wp_footer %}
+{{ parent() }}
+<script>
+
+    rentivo_callbacks = typeof rentivo_callbacks === "undefined" ? [] : rentivo_callbacks;
+    rentivo_callbacks.push( function(){
+
+        require([
+            {% if dataBridge and params['entityId'] %}
+            "rentivo/rental!{{ params['entityId'] }}",
+            {% endif %}
+            "rentivo/widget!/{{ widgetName }}{{ urlSegment }}{{ params['ref'] }}?{{ params|url_encode|raw }}"
+
+        ], function({{ dataBridge }}{{ widgetName|first|upper }}{{ widgetName|slice(1, length) }}){
+            {{ widgetName|first|upper }}{{ widgetName|slice(1, length) }}.place("rentivo-widget-{{ containerId }}");
+        });
+
+    } );
+
+</script>
+{% endblock %}

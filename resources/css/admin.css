@@ -1,0 +1,342 @@
+/*
+------------------------------------------------
+GRID SYSTEM
+----------------------------------------------*/
+.grid {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.grid__row {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid__item {
+    flex: 1;
+    padding: 15px;
+}
+
+@media all and ( min-width: 480px ) {
+    .grid__row--sm {
+        flex-direction: row;
+    }
+}
+
+@media all and ( min-width: 720px ) {
+    .grid__row--md {
+        flex-direction: row;
+    }
+}
+
+@media all and ( min-width: 960px ) {
+    .grid__row--lg {
+        flex-direction: row;
+    }
+}
+
+/*
+------------------------------------------------
+GENERIC STYLES
+----------------------------------------------*/
+.pull-left {  float: left;  }
+.pull-right {  float: right;  }
+.center { text-align: center; }
+.pre-code { font-family: monospace; white-space: normal; padding: 15px; background-color: #eee; }
+.no-margin-bottom { margin-bottom: 0!important; }
+.margin-bottom { margin-bottom: 20px!important; }
+
+/*
+------------------------------------------------
+WIDGET HOME
+----------------------------------------------*/
+.rentivo-widgets {
+
+}
+.rw-well {
+    background: #DDD;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.rw-well h3 {
+    margin-top: 0;
+}
+.rw-well input {
+    padding: 10px 15px;
+    width: 280px;
+}
+.rw-well .button {
+    height: 38px;
+    line-height: 36px;
+    margin-top: 2px;
+}
+.rw-overlay {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.45);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+.rw-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.rw-overlay-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    height: 100%;
+}
+.rw-block-wrap {
+    padding: 20px;
+}
+
+.rw-block {
+    overflow: hidden;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.rw-block .title {
+    padding: 15px; /* adding comment */
+    margin: 0;
+    color: white;
+    background-color: #23282d;
+    font-size: 17px!important;
+    line-height: 17px!important;
+}
+
+.rw-block p {
+    margin-top: 0;
+}
+
+
+.rw-block .title .button {
+    margin-top: -5px;
+}
+
+.rw-block .sub-title {
+    padding: 15px;
+    font-size: 17px!important;
+    line-height: 17px!important;
+    margin: 0;
+    background-color: #eeeeee;
+}
+
+.rw-block .sub-title a {
+    font-size: 14px;
+}
+
+.rw-block .requiresPropertyId {
+    display: none;
+}
+
+.rw-block .requiresPropertyId.show {
+    display: block;
+}
+
+.rw-block .pre-code { background-color: rgba(0,0,0,0.7); color: yellow; border-radius: 6px;}
+
+.rw-block .btn-copy {
+    font-size: 12px;
+    line-height: 22px;
+    height: 24px;
+    margin-bottom:5px;
+    padding: 0 7px 1px;
+}
+
+.rw-block .image {
+    border-bottom:2px solid #23282d;
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    /*background-position: center center; */
+    background-repeat: no-repeat;
+}
+
+.rw-block .meta {
+    padding: 15px;
+}
+
+.rw-block .how-to {
+    padding: 15px;
+}
+
+.rw-block .how-to-options {
+    display: none;
+}
+
+.rw-block .how-to table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.rw-block .how-to table td, th {
+    width: 50%;
+    text-align: left;
+    padding: 5px 0;
+    border-bottom:1px solid rgba(0, 0, 0, 0.07);
+}
+
+.toggle-button.button.off {
+    text-shadow: none;
+    background: #999;
+    border-color: #999 #999 #999;
+    box-shadow: 0 1px 0 #666;
+}
+
+.button-loading {
+
+}
+
+.button-loading:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4,end) 400ms infinite;
+    animation: ellipsis steps(4,end) 400ms infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+    width: 0px;
+}
+
+@keyframes ellipsis {
+    to {
+        width: 1.25em;
+    }
+}
+
+@-webkit-keyframes ellipsis {
+    to {
+        width: 1.25em;
+    }
+}
+
+
+.masonry-grid {
+    background: #DDD;
+}
+
+/* clear fix */
+.masonry-grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.masonry-grid .grid-sizer,
+.masonry-grid .grid-item {
+    width: 100%;
+}
+
+.masonry-grid .grid-item {
+    float: left;
+}
+
+.masonry-grid .grid-item img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ------------------- FORMs -------------------- */
+.rw-form {
+    width: 100%;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+.rw-form table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.rw-form table td {
+    width: 50%;
+    padding: 15px;
+    border-bottom: 1px solid #eeeeee;
+}
+.rw-form-control {
+    width: 100%;
+}
+
+.rw-form tr.no-border td {
+    border-bottom: none!important;
+}
+
+.rw-form table label {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.wp-color-result {
+    margin: 0;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .masonry-grid .grid-sizer,
+    .masonry-grid .grid-item {
+        width: 50%;
+    }
+
+    .rw-form {
+        width: 75%;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .masonry-grid .grid-sizer,
+    .masonry-grid .grid-item {
+        width: 50%;
+    }
+    .rw-form {
+        width: 66%;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1400px) {
+    .masonry-grid .grid-sizer,
+    .masonry-grid .grid-item {
+        width: 33.33%;
+    }
+    .rw-form {
+        width: 66%;
+    }
+}
+
+
+.rw-filters .button:active,
+.rw-filters .button.is-checked {
+    background-color: #28F!important;
+    color: white!important;
+}
+
+.rw-filters .button:active,
+.rw-filters .button.is-checked:hover {
+    background-color: #28F!important;
+    color:white!important;
+    border-color:#28F!important;
+}
+
+.rw-filters .button.is-checked {
+    color: white;
+    text-shadow: 0 -1px hsla(0, 0%, 0%, 0.8);
+}
+
+.rw-filters .button:active {
+    box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
+}

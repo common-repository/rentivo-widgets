@@ -1,0 +1,68 @@
+/* -------- RESET FONTS --------------- */
+/* ----------------------------------------------------------- */
+.RentivoSDKContainer h1, .RentivoSDKContainer h2, .RentivoSDKContainer h3, .RentivoSDKContainer h4, .RentivoSDKContainer h5, .RentivoSDKContainer h6, .RentivoSDKContainer .h1, .RentivoSDKContainer .h2, .RentivoSDKContainer .h3, .RentivoSDKContainer .h4, .RentivoSDKContainer .h5, .RentivoSDKContainer .h6 {
+    font-family: inherit!important;
+}
+.RentivoSDKContainer {
+    font-family: inherit!important;
+}
+.rentivo-widget {
+    font-family: inherit!important;
+}
+
+
+/* -------- RESET COLOURS --------------- */
+/* ----------------------------------------------------------- */
+.RentivoSDKContainer .diskitPriceAvailabilityCalculator fieldset .currency-price .amount, .RentivoSDKContainer #widget-property-rates tbody .currency-price .amount {
+    color: #e1614c!important;
+}
+
+
+/* -------- RESET STRUCTURE --------------- */
+/* ----------------------------------------------------------- */
+.RentivoSDKContainer .row {
+    margin-right: -15px!important;
+    margin-left: -15px!important;
+}
+
+/* ------ BUTTONS ------------------ */
+/* ----------------------------------------------------------- */
+.RentivoSDKContainer .btn {
+    border:0!important;
+}
+
+/* ------ OTHER ------------------ */
+/* ----------------------------------------------------------- */
+.RentivoSDKContainer .diskitPriceAvailabilityCalculator fieldset ul li.error.warning {
+    margin-left: 0!important;
+}
+
+.RentivoSDKContainer .fa.pull-right {
+    margin-right: .3em!important;
+}
+
+.RentivoSDKContainer .fa-lg {
+    line-height: 1.2em!important;
+    vertical-align: 0!important;
+}
+
+/* ------ WIDGET SPECIFICS ------------------ */
+/* ----------------------------------------------------------- */
+.widget-amenities .even, .widget-amenities .odd {
+    padding: 15px!important;
+}
+
+.widget-property-availability .panel-body {
+    padding: 0!important;
+}
+
+.widget-property-availability .availabilityLegend {
+    padding-top: 15px;
+}
+
+.widget-property-rates .panel-body {
+    padding: 0!important;
+}
+.RentivoSDKContainer #widget-property-rates th.min-stay, .RentivoSDKContainer #widget-property-rates td.min-stay {
+    max-width: initial!important;
+}

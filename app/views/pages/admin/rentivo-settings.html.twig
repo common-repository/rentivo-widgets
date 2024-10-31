@@ -1,0 +1,38 @@
+<div class="wrap">
+
+    <h2 class="margin-bottom">Rentivo Widget Settings</h2>
+
+    <form id="rentivoSettings" class="rw-settings rw-form">
+        <table>
+            <tr>
+                <td><label>Rentivo Website: </label><br><small>Entering your Rentivo website will ensure users can checkout on your website (not Rentivo's).</small></td>
+                <td><input type="text" name="rentivo_website" value="{{ settings.rentivo_website }}" class="rw-form-control" placeholder="http://example.com (optional)"/></td>
+            </tr>
+            <tr>
+                <td><label>Rentivo Property Id: </label><br><small>To save time entering your property id over and over again, enter it here (not recommended for 1+ properties). <a href="https://www.rentivo.com/docs/Property_Owners/Create_Listing/getting_your_rental_id.html" target="_blank">How do I get my property ID?</a></small></td>
+                <td><input type="text" name="rentivo_property_id" value="{{ rentivoPropertyIdValue }}" class="rw-form-control" placeholder="(optional)"/></td>
+            </tr>
+            <tr>
+                <td><label>Primary link colour: </label></td>
+                <td><input type="text" name="primary_link_colour" value="{{ settings.primary_link_colour }}" data-default-color="{{ default_settings.primary_link_colour }}" class="color-field"/></td>
+            </tr>
+            <tr>
+                <td><label>Primary link hover colour: </label></td>
+                <td><input type="text" name="primary_link_hover_colour" value="{{ settings.primary_link_hover_colour }}" data-default-color="{{ default_settings.primary_link_hover_colour }}" class="color-field"/></td>
+            </tr>
+            <tr>
+                <td><label>Primary button colour: </label></td>
+                <td><input type="text" name="primary_button_colour" value="{{ settings.primary_button_colour }}" data-default-color="{{ default_settings.primary_button_colour }}" class="color-field"/></td>
+            </tr>
+            <tr>
+                <td><label>Primary button hover colour: </label></td>
+                <td><input type="text" name="primary_button_hover_colour" value="{{ settings.primary_button_hover_colour }}" data-default-color="{{ default_settings.primary_button_hover_colour }}" class="color-field"/></td>
+            </tr>
+            <tr class="no-border">
+                <td><a href="javascript:void(0)" id="rentivoSettingsSubmit" class="button button-primary">Save settings</a></td>
+            </tr>
+        </table>
+    </form>
+
+
+</div>

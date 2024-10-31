@@ -1,0 +1,144 @@
+<div class="wrap">
+
+    {% if allActive %}
+        {% set allActiveClass = 'on' %}
+        {% set allActiveText = 'Turn all widgets off' %}
+        {% set allActiveOverlayClass = '' %}
+    {% else %}
+        {% set allActiveClass = 'off' %}
+        {% set allActiveText = 'Turn all widgets on' %}
+        {% set allActiveOverlayClass = 'active' %}
+    {% endif %}
+
+
+    <h2 class="margin-bottom">Rentivo Widgets <a href="javascript:void(0)" id="rentivoWidgetsGeneral" class="button button-primary pull-right toggle-button {{ allActiveClass }}">{{ allActiveText }}</a></h2>
+
+    <div class="property-id rw-well">
+        <h3>What's your Rentivo property ID & Website? <small><a href="https://www.rentivo.com/docs/Property_Owners/Create_Listing/getting_your_rental_id.html" target="_blank">How do I get my property ID?</a></small></h3>
+        <p>Updating your property ID will automatically update all the shortcodes below with your Rentivo property ID. If you're working with multiple properties, you can leave this field blank and enter property_id's manually for every property. For example: [shortcode property_id="12345"].</p><p>Saving your Rentivo website ensures all widgets that have an external link directs to your website. For example, if a booking button is generated the user can checkout on your website, rather than on rentivo.com.</p>
+        <input type="text" id="rentivoPropertyId" placeholder="Enter a Rentivo property ID (optional)" value="{{ rentivoPropertyIdValue }}"> <a href="javascript:void(0)" id="rentivoPropertyIdSubmit" class="button button-primary">Update shortcodes</a>
+        <input type="text" id="rentivoWebsite" placeholder="Enter your Rentivo website, http://www.example.com (optional)" value="{{ settings.rentivo_website }}" style="width: 445px;"> <a href="javascript:void(0)" id="rentivoWebsiteSubmit" class="button button-primary">Save website</a>
+        <br><a href="javascript:void(0)" style="margin-top: 5px;" id="rentivoPropertyIdClear">Clear property id</a>
+    </div>
+
+    <div class="rw-filters rw-well">
+        <div id="filters" class="button-group">
+            <button class="button is-checked" data-filter="*">Show all</button>
+            <button class="button" data-filter=".cat-popular">Popular</button>
+            <button class="button" data-filter=".cat-property">Property</button>
+            <button class="button" data-filter=".cat-properties">Multi-property</button>
+            <button class="button" data-filter=".cat-search">Location / search</button>
+            <button class="button" data-filter=".cat-other">Other</button>
+        </div>
+    </div>
+
+    <div class="masonry-grid rentivo-widgets">
+        <div class="rw-overlay {{ allActiveOverlayClass }}"><div class="rw-overlay-content">All widgets are turned off</div></div>
+        <div class="grid-sizer"></div>
+
+        {% for widgetKey, widget in widgets %}
+
+            {% if widget.meta.active %}
+                {% set activeClass = 'on' %}
+                {% set activeText = 'Turn off' %}
+            {% else %}
+                {% set activeClass = 'off' %}
+                {% set activeText = 'Turn on' %}
+            {% endif %}
+
+            {% set requiredString = "" %}
+            {% set instructions = "" %}
+            {% for attrKey, attrValue in widget.attributes %}
+                {% if "required" in attrValue[2] %}
+                    {% if not widget.meta.requiresPropertyId %}
+                        {% set requiredString = requiredString ~ ' ' ~ attrKey ~ '="' ~ attrValue[1] ~ '"' %}
+                        {% set instructions = instructions ~ '<p><strong>&mdash;</strong> Make sure to change "' ~ attrValue[1] ~ '" to your ' ~ attrKey ~ '.</p>' %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <div class="grid-item {{ widget.meta.filterCategories }}">
+                <div class="rw-block-wrap">
+                    <div class="rw-block">
+                        <h2 class="title">
+                            {{ widget.meta.title }}
+                            <a href="javascript:void(0)" class="rentivo-wigdet-button button button-primary pull-right {{ activeClass }} toggle-button" id="{{ widgetKey }}">{{ activeText }}</a>
+                        </h2>
+                        <div class="image" style="background-image: url('{{ assetUrl }}/img/widgets/{{ widgetKey }}.jpg')"></div>
+                        <div class="meta">
+                            <p class="no-margin-bottom">{{ widget.meta.description }}</p>
+                        </div>
+                        <h2 class="sub-title">How to use</h2>
+                        <div class="how-to">
+                            <div class="requiresPropertyId {% if widget.meta.requiresPropertyId and rentivoPropertyIdValue == "" %}show{% endif %}">
+                                <p><strong>&mdash;</strong> Locate your Rentivo property ID. <a href="https://www.rentivo.com/docs/Property_Owners/Create_Listing/getting_your_rental_id.html" target="_blank">How do I get my property ID?</a></p>
+                                <p><strong>&mdash;</strong> Copy and paste the shortcode below on pages/posts. Make sure to change "{{ settings.rentivo_property_id }}" to your Rentivo property ID</p>
+                            </div>
+                            <div class="requiredInstructions">
+                                {{ instructions|raw }}
+                            </div>
+
+                            <p><strong>Shortcode:</strong>
+                                <button class="button btn-copy pull-right" data-clipboard-target="#shortcode-1-{{ widgetKey }}">
+                                    Copy to clipboard
+                                </button>
+                            </p>
+                            <div class="pre-code center shortcode" id="shortcode-1-{{ widgetKey }}">
+                                [{{ widget.meta.shortcode }}{% if widget.meta.requiresPropertyId %} property_id="{{ settings.rentivo_property_id }}"{% endif %}{{ requiredString }}]
+                            </div>
+                        </div>
+                        <h2 class="sub-title">Options <a href="javascript:void(0)" class="pull-right toggle-options" data-options="options-{{ widgetKey }}">Toggle options</a></h2>
+                        <div class="how-to how-to-options" id="options-{{ widgetKey }}">
+                            <table>
+                                    <thead>
+                                        <tr>
+                                            <th><strong>Shortcode option</strong></th>
+                                            <th><strong>Default value</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for optionKey, option in widget.attributes %}
+                                            <tr>
+                                                <td>{{ optionKey }}</td>
+                                                <td>{{ option[1] }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                            </table>
+                            <p><strong>Example:</strong>
+                                <button class="button btn-copy pull-right" data-clipboard-target="#shortcode-2-{{ widgetKey }}">
+                                    Copy to clipboard
+                                </button>
+                            </p>
+
+                            <div class="pre-code center shortcode" id="shortcode-2-{{ widgetKey }}">
+                                [{{ widget.meta.shortcode }}{% if widget.meta.requiresPropertyId %} property_id="{{ settings.rentivo_property_id }}"{% endif %}{{ requiredString }}{% for optionKey, option in widget.attributes %}{% if option[1] %} {{ optionKey }}="{{ option[1] }}"{% endif %}{% endfor %}]
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!--
+    <div class="grid rw-blocks">
+        <div class="grid__row grid__row--md">
+            <div class="grid__item">
+                {% include 'pages/admin/info-boxes/property-price-availability-calculator.html.twig' %}
+            </div>
+            <div class="grid__item">
+                {% include 'pages/admin/info-boxes/property-price-availability-calculator.html.twig' %}
+            </div>
+            <div class="grid__item">
+                {% include 'pages/admin/info-boxes/property-price-availability-calculator.html.twig' %}
+            </div>
+            <div class="grid__item">
+                {% include 'pages/admin/info-boxes/property-price-availability-calculator.html.twig' %}
+            </div>
+
+        </div>
+    </div>
+    -->
+
+</div>

@@ -1,0 +1,10 @@
+.rw-alert-box {
+    padding: 20px;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.rw-alert-box-error {
+    background-color: red;
+}
